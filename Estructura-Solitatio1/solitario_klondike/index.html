@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solitario Klondike</title>
+  <link rel="icon" type="image/jpeg" href="../Imagen/images.jpeg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">JUEGO DE CARTAS</p>
+        <h1>Solitario <span>Klondike</span></h1>
+      </div>
+      <div class="stats">
+        <div><small>MOVIMIENTOS</small><strong id="moves">0</strong></div>
+        <div><small>PUNTOS</small><strong id="score">0</strong></div>
+        <div><small>TIEMPO</small><strong id="timer">00:00</strong></div>
+      </div>
+    </header>
+
+    <section class="toolbar">
+      <p id="message" role="status">Selecciona una carta y luego el destino.</p>
+      <div class="actions">
+        <button id="undoBtn" class="secondary">↶ Deshacer</button>
+        <button id="newGameBtn" class="primary">＋ Nueva partida</button>
+      </div>
+    </section>
+
+    <section class="board" aria-label="Tablero de solitario">
+      <div class="top-row">
+        <div class="top-left">
+          <button id="stock" class="card-slot stock" aria-label="Robar cartas"><span>↻</span></button>
+          <div id="waste" class="card-slot waste" aria-label="Cartas robadas"></div>
+        </div>
+        <div class="foundations">
+          <div class="foundation card-slot" data-suit="♥" aria-label="Fundación corazones"></div>
+          <div class="foundation card-slot" data-suit="♦" aria-label="Fundación diamantes"></div>
+          <div class="foundation card-slot" data-suit="♣" aria-label="Fundación tréboles"></div>
+          <div class="foundation card-slot" data-suit="♠" aria-label="Fundación picas"></div>
+        </div>
+      </div>
+      <div id="tableau" class="tableau"></div>
+    </section>
+
+    <footer class="footer">
+      <span>♠ ♥ ♣ ♦</span>
+      <p>Regla: alterna colores y ordena de Rey a As en las columnas.</p>
+      <button id="rulesBtn" class="text-button">¿Cómo se juega?</button>
+    </footer>
+  </main>
+
+  <dialog id="rulesDialog">
+    <h2>Reglas del solitario</h2>
+    <ul>
+      <li>En las columnas, coloca cartas en orden descendente y alternando rojo y negro.</li>
+      <li>Solo un Rey puede ocupar una columna vacía.</li>
+      <li>Las fundaciones se construyen por palo, desde el As hasta el Rey.</li>
+      <li>Roba hasta tres cartas del mazo. Cuando se agote, puedes reciclar las cartas robadas.</li>
+      <li>Ganas cuando las 52 cartas están en las cuatro fundaciones.</li>
+    </ul>
+    <button id="closeRulesBtn" class="primary">Entendido</button>
+  </dialog>
+  <dialog id="loseDialog">
+    <h2>Partida bloqueada</h2>
+    <p>No quedan cartas por robar ni movimientos legales disponibles.</p>
+    <button id="restartLostBtn" class="primary">Nueva partida</button>
+  </dialog>
+  <dialog id="winDialog">
+    <div class="win-icon">★</div>
+    <h2>¡Has ganado!</h2>
+    <p>Has completado las cuatro fundaciones.</p>
+    <p id="finalScore"></p>
+    <button id="playAgainBtn" class="primary">Jugar otra vez</button>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
